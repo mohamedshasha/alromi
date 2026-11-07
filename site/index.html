@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مركز الرومي الطبي | Alroomy Medical Centre</title>
+<meta name="description" content="مركز الرومي الطبي في شارع الشنقيطي، محطة الرومي، أم درمان. عيادات اختصاصيين تحت سقف واحد، وقسم لطب وزراعة وتقويم الأسنان والأنف والأذن والحنجرة.">
+<meta name="theme-color" content="#1c3fb0">
+<meta property="og:title" content="مركز الرومي الطبي | Alroomy Medical Centre">
+<meta property="og:description" content="عيادات اختصاصيين تحت سقف واحد في شارع الشنقيطي، أم درمان.">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="img/logo-64.png"><link rel="apple-touch-icon" href="img/logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Almarai:wght@300;400;700;800&family=Zilla+Slab:wght@600;700&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --band:#1c3fb0; --navy:#0d1d63; --night:#080c2d; --red:#d7262e; --gold:#f4b400; --white:#f3f5fa; --plate:#ffffff;
+  --rule:rgba(13,29,99,.14); --soft:#4d5888;
+  --display:"Lalezar",sans-serif; --body:"Almarai",system-ui,sans-serif;
+  --s-1:.875rem; --s0:1.0625rem; --s1:1.3rem; --s2:1.75rem; --s4:clamp(2.6rem,7vw,4rem);
+  --ease:cubic-bezier(.2,.7,.1,1); --spring:cubic-bezier(.34,1.56,.64,1);
+}
+html[lang=en]{--display:"Zilla Slab",Georgia,serif; --body:"Public Sans",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);font-size:var(--s0);background:var(--white);color:var(--navy);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html[lang=en] body{line-height:1.6}
+body.locked{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+html[lang=ar] .en, html[lang=en] .ar{display:none!important}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+.num{font-family:"Public Sans",sans-serif;direction:ltr;unicode-bidi:isolate}
+section{padding:clamp(72px,10vw,120px) 0}
+
+h2{font-family:var(--display);font-weight:400;font-size:var(--s4);line-height:1.15;color:var(--navy)}
+html[lang=en] h2{font-weight:700;letter-spacing:-.01em}
+.lead{max-width:36em;color:var(--soft);margin-top:14px}
+
+/* word-by-word headline reveal */
+.wd{display:inline-block;overflow:hidden;vertical-align:bottom;padding:.18em 0;margin:-.18em 0}
+.wd>span{display:inline-block;transform:translateY(110%);transition:transform 1s var(--ease);transition-delay:calc(var(--w,0)*80ms)}
+.in .wd>span, .wd.in>span{transform:none}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- LOADER ---------- */
+.loader{position:fixed;inset:0;z-index:200;background:var(--night);display:grid;place-items:center;align-content:center;gap:18px;color:#fff;transition:transform 1s cubic-bezier(.77,0,.18,1)}
+.loader.done{transform:translateY(-100%)}
+.loader-logo{position:relative;width:112px;height:112px}
+.loader-logo svg{position:absolute;inset:-16px;width:144px;height:144px;overflow:visible}
+.loader-logo img{width:112px;height:112px;border-radius:50%;opacity:0;transform:scale(.6) rotate(-20deg);animation:pop .9s .35s var(--spring) forwards}
+@keyframes pop{to{opacity:1;transform:none}}
+.loader .c1{fill:none;stroke:var(--red);stroke-width:4;stroke-dasharray:190;stroke-dashoffset:190;animation:draw 1s var(--ease) forwards}
+.loader .c2{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-dasharray:146;stroke-dashoffset:146;animation:draw 1s .25s var(--ease) forwards}
+.loader .x{fill:none;stroke:#fff;stroke-width:6.5;stroke-linecap:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw .7s .6s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.loader p{font-family:"Lalezar",sans-serif;font-size:1.6rem;opacity:0;animation:fadein .6s .7s forwards}
+.loader .bar{width:140px;height:2px;background:rgba(255,255,255,.15);overflow:hidden;border-radius:2px}
+.loader .bar i{display:block;height:100%;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;animation:load 1.3s var(--ease) forwards}
+html[dir=ltr] .loader .bar i{transform-origin:left}
+@keyframes load{to{transform:scaleX(1)}}
+@keyframes fadein{to{opacity:1}}
+
+/* gold facade lights */
+.lights{display:flex;justify-content:space-between;align-items:center;height:22px}
+.lights i{width:8px;height:8px;border-radius:50%;background:#7a6a3a;opacity:.45}
+.lights.on i{animation:lamp .5s var(--ease) forwards,chase 3s linear infinite;animation-delay:calc(var(--k)*80ms),calc(var(--k)*150ms + 1.5s)}
+@keyframes lamp{to{background:var(--gold);opacity:1;box-shadow:0 0 12px 3px rgba(244,180,0,.65)}}
+@keyframes chase{0%,100%{background:var(--gold);opacity:1;box-shadow:0 0 12px 3px rgba(244,180,0,.65)}50%{background:#fff3c4;opacity:1;box-shadow:0 0 18px 6px rgba(255,220,120,.9)}}
+
+/* buttons */
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 22px;border-radius:10px;font-weight:700;font-size:1rem;overflow:hidden;isolation:isolate;transition:background .2s,color .2s,border-color .2s,transform .3s var(--spring)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn:active{transform:scale(.96)}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s var(--ease)}
+.btn:hover::after{transform:translateX(120%)}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:#ffc928}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:#b81d24}
+.btn-out{border:2px solid currentColor}
+.btn-out:hover{background:rgba(255,255,255,.12)}
+.btn-wa{background:#1d9e55;color:#fff}
+.btn-wa:hover{background:#178547}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;color:#fff;transition:background .4s,box-shadow .4s}
+.nav.solid{background:var(--band);box-shadow:0 6px 24px -10px rgba(13,29,99,.6)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:66px}
+.progress{position:absolute;inset:auto 0 0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:right}
+html[dir=ltr] .progress{transform-origin:left}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Lalezar",sans-serif;font-size:1.35rem;line-height:1}
+html[lang=en] .brand{font-family:"Zilla Slab",serif;font-weight:700;font-size:1.25rem}
+.seal{width:40px;height:40px;flex:none;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--gold)}
+.nav ul{display:none;list-style:none;gap:28px;margin-inline-start:auto}
+.nav ul a{opacity:.85;padding:6px 0;border-bottom:2px solid transparent;transition:opacity .2s,border-color .2s}
+.nav ul a:hover{opacity:1;border-color:var(--gold)}
+.lang{margin-inline-start:auto;background:none;color:#fff;border:2px solid rgba(255,255,255,.5);border-radius:8px;height:38px;padding:0 14px;font:700 .95rem var(--body);cursor:pointer}
+.lang:hover{border-color:var(--gold);color:var(--gold)}
+@media(min-width:900px){.nav ul{display:flex}.lang{margin-inline-start:8px}}
+
+/* ---------- HERO (3D) ---------- */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;color:#fff;overflow:hidden;isolation:isolate;padding:0;
+  background:linear-gradient(180deg,#070b2a 0%,#141a55 30%,#3a2470 58%,#8a3f72 78%,#d9775a 100%)}
+#scene{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
+.hero-photo{position:absolute;inset:0;z-index:-3}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:55% 45%}
+.hero.has3d .hero-photo{display:none}
+.hero-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,rgba(8,12,45,.95) 0%,rgba(8,12,45,.75) 32%,transparent 62%)}
+.hero:not(.has3d) .hero-shade{background:linear-gradient(180deg,rgba(13,29,99,.35),rgba(13,29,99,.94) 88%)}
+.hero-in{padding:120px 0 120px;position:relative}
+.hero h1{font-family:"Lalezar",sans-serif;font-weight:400;font-size:clamp(3.4rem,14vw,7.6rem);line-height:.98;text-shadow:0 6px 40px rgba(0,0,0,.4)}
+.hero h1 .ln{display:block;overflow:hidden;padding:.12em 0;margin:-.12em 0}
+.hero h1 .ln>span{display:inline-block;transform:translateY(110%);transition:transform 1.2s var(--ease)}
+.hero h1 .ln:nth-child(2)>span{transition-delay:.12s}
+.hero h1 small{display:block;font-family:"Zilla Slab",serif;font-weight:700;font-size:clamp(1rem,3vw,1.5rem);line-height:1.2;color:#ffb3b7;margin-top:18px;letter-spacing:.04em}
+html[lang=en] .hero h1{font-family:"Zilla Slab",serif;font-weight:700;font-size:clamp(3rem,10vw,6.6rem);letter-spacing:-.02em;line-height:.95}
+html[lang=en] .hero h1 small{font-family:"Lalezar",sans-serif;font-weight:400;letter-spacing:0;font-size:clamp(1.3rem,4vw,2rem)}
+.hero p.where{font-size:var(--s1);max-width:24em;margin-top:22px;opacity:.92}
+.hero-row{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px;margin-top:30px}
+.hero .fx{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.hero .fx:nth-of-type(2){transition-delay:.35s}
+body.ready .hero h1 .ln>span{transform:none}
+body.ready .hero .fx{opacity:1;transform:none;transition-delay:.5s}
+body.ready .hero .hero-row.fx{transition-delay:.7s}
+.scroll-cue{position:absolute;bottom:92px;inset-inline-end:max(16px,calc((100% - 1160px)/2));width:26px;height:42px;border:2px solid rgba(255,255,255,.5);border-radius:14px;display:none}
+.scroll-cue::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--gold);animation:cue 1.8s infinite}
+@keyframes cue{0%{transform:translateY(0);opacity:1}80%{transform:translateY(14px);opacity:0}100%{opacity:0}}
+@media(min-width:900px){
+  .hero{align-items:center}
+  .hero-in{padding:120px 0}
+  .hero-in>div{max-width:50%}
+  .hero-shade{background:linear-gradient(270deg,rgba(8,12,45,.85) 0%,rgba(8,12,45,.4) 42%,transparent 62%)}
+  html[dir=ltr] .hero-shade{background:linear-gradient(90deg,rgba(8,12,45,.85) 0%,rgba(8,12,45,.4) 42%,transparent 62%)}
+  .scroll-cue{display:block}
+}
+
+/* heartbeat line */
+.ecg{position:absolute;inset:auto 0 18px;height:64px;width:100%;pointer-events:none;z-index:1}
+.ecg path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ecg .base{stroke:rgba(255,255,255,.12);stroke-width:1.5}
+.ecg .beat{stroke:var(--red);stroke-width:2.5;stroke-dasharray:180 820;stroke-dashoffset:1000;filter:drop-shadow(0 0 6px rgba(255,60,60,.9));animation:beat 3.2s linear infinite}
+.ecg .beat.g{stroke:var(--gold);animation-delay:1.6s;filter:drop-shadow(0 0 6px rgba(244,180,0,.9))}
+html[dir=rtl] .ecg{transform:scaleX(-1)}
+@keyframes beat{to{stroke-dashoffset:0}}
+
+/* status plate */
+.plate{display:inline-grid;background:var(--plate);color:var(--navy);border-radius:4px;padding:5px;box-shadow:0 2px 0 rgba(0,0,0,.15);min-width:0}
+.plate .top{font-size:.8rem;font-weight:700;padding:2px 8px 4px;display:flex;align-items:center;gap:8px}
+.plate .panel{background:var(--red);color:#fff;font-family:var(--display);font-size:1.15rem;line-height:1.3;padding:8px 12px;border-radius:2px}
+html[lang=en] .plate .panel{font-weight:700;font-size:1.05rem}
+.plate.closed .panel{background:#5d6383}
+.dot{width:9px;height:9px;border-radius:50%;background:#1d9e55;flex:none;box-shadow:0 0 0 0 rgba(29,158,85,.6);animation:ping 2s infinite}
+.plate.closed .dot{background:#9aa0b8;animation:none}
+@keyframes ping{70%{box-shadow:0 0 0 9px rgba(29,158,85,0)}100%{box-shadow:0 0 0 0 rgba(29,158,85,0)}}
+
+/* ticker */
+.ticker{background:var(--red);color:#fff;overflow:hidden;padding:14px 0;border-block:3px solid var(--gold)}
+.track{display:flex;width:max-content;animation:tick 48s linear infinite}
+html[dir=rtl] .track{animation-name:tickR}
+.track span{display:flex;align-items:center;gap:22px;padding-inline-end:22px;font-family:var(--display);font-size:1.35rem;white-space:nowrap}
+html[lang=en] .track span{font-weight:700;font-size:1.15rem}
+.track span::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px rgba(244,180,0,.9)}
+.ticker:hover .track{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+@keyframes tickR{to{transform:translateX(50%)}}
+
+/* ---------- SIGNBOARD WALL ---------- */
+.wall{background:var(--band);color:#fff;padding-top:0;position:relative;overflow:hidden}
+.wall .lights{margin:14px 0 clamp(48px,8vw,80px)}
+.wall h2{color:#fff}
+.wall .lead{color:rgba(255,255,255,.78)}
+.signs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:44px;padding:14px;background:#14308f;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 40px 80px -40px rgba(0,0,0,.6);perspective:900px}
+.sign{transform-origin:50% 0;transform:rotateX(-95deg);opacity:0}
+.signs.in .sign{animation:hang 1.1s var(--ease) forwards;animation-delay:calc(var(--i)*90ms)}
+@keyframes hang{0%{transform:rotateX(-95deg);opacity:0}45%{opacity:1}60%{transform:rotateX(14deg)}78%{transform:rotateX(-6deg)}90%{transform:rotateX(2deg)}100%{transform:none;opacity:1}}
+.face{position:relative;height:100%;background:var(--plate);color:var(--navy);border-radius:3px;padding:6px;display:grid;grid-template-rows:auto 1fr;box-shadow:0 3px 0 rgba(0,0,0,.25);transition:transform .5s var(--ease),box-shadow .5s;transform-style:preserve-3d;overflow:hidden}
+.face:hover{box-shadow:0 24px 40px -14px rgba(0,0,0,.55)}
+.face .glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.45),transparent 55%);opacity:0;transition:opacity .4s;mix-blend-mode:soft-light}
+.face:hover .glare{opacity:1}
+.sign .who{font-size:.78rem;font-weight:700;padding:3px 6px 6px;border-bottom:2px solid var(--navy);margin-bottom:6px}
+.sign .what{background:var(--red);color:#fff;border-radius:2px;padding:12px 10px;display:grid;align-content:center;text-align:center;min-height:96px;transform:translateZ(18px)}
+.sign .what b{font-family:var(--display);font-weight:400;font-size:1.3rem;line-height:1.3}
+html[lang=en] .sign .what b{font-weight:700;font-size:1.08rem;line-height:1.25}
+.sign .what .alt{font-size:.78rem;opacity:.85;margin-top:4px;line-height:1.35}
+@media(min-width:640px){.signs{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:18px}}
+@media(min-width:1000px){.signs{grid-template-columns:repeat(4,minmax(0,1fr))}.sign .what{min-height:116px}.sign .what b{font-size:1.5rem}}
+.wall .after{margin-top:22px;color:rgba(255,255,255,.7);font-size:var(--s-1)}
+
+/* ---------- ABOUT ---------- */
+.about{display:grid;gap:40px;align-items:center}
+.about figure{border-radius:6px;overflow:hidden;aspect-ratio:4/3;position:relative;box-shadow:0 40px 70px -40px rgba(13,29,99,.6)}
+.about figure img{width:100%;height:118%;object-fit:cover;transform:translateY(var(--py,0)) scale(1.16);will-change:transform}
+.facts{list-style:none;margin-top:28px;border-top:1px solid var(--rule)}
+.facts li{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--rule)}
+.facts svg{width:22px;height:22px;flex:none;color:var(--red);margin-top:4px}
+.stats{display:flex;gap:36px;margin-top:30px}
+.stats b{display:block;font-family:"Zilla Slab",serif;font-size:2.6rem;line-height:1;color:var(--red)}
+.stats small{color:var(--soft)}
+@media(min-width:900px){.about{grid-template-columns:1fr 1fr;gap:72px}}
+
+/* ---------- DENTAL ---------- */
+.dental{background:var(--plate);border-block:1px solid var(--rule)}
+.dental .wrap{display:grid;gap:40px}
+.dental-photos{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:10px;height:clamp(360px,60vw,540px);perspective:1200px}
+.dental-photos figure{border-radius:6px;overflow:hidden;opacity:0;transform:rotateY(-35deg) translateZ(-140px);transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+html[dir=ltr] .dental-photos figure{transform:rotateY(35deg) translateZ(-140px)}
+.dental-photos figure:first-child{grid-row:span 2}
+.dental-photos figure:nth-child(2){transition-delay:.15s}
+.dental-photos figure:nth-child(3){transition-delay:.3s}
+.dental-photos.in figure{opacity:1;transform:none}
+.dental-photos img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.dental-photos figure:hover img{transform:scale(1.07)}
+.services{list-style:none;columns:2;column-gap:28px;margin:26px 0 30px}
+.services li{break-inside:avoid;padding:8px 0;border-bottom:1px solid var(--rule);font-weight:700}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px}
+.contact-row .btn-out{color:var(--navy)}
+.contact-row .btn-out:hover{background:rgba(13,29,99,.06)}
+@media(min-width:900px){.dental .wrap{grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}}
+
+/* ---------- SOON (3D cell) ---------- */
+.soon{background:radial-gradient(120% 120% at 20% 0%,#e8343c 0%,var(--red) 40%,#8f1219 100%);color:#fff;overflow:hidden}
+.soon .wrap{display:grid;gap:30px;align-items:center}
+.soon h2{color:#fff}
+.soon p{max-width:32em;opacity:.92}
+.soon-tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:800;padding:4px 12px;border-radius:4px;font-size:.9rem}
+.cell{width:min(300px,70vw);aspect-ratio:1;position:relative;justify-self:center;perspective:900px}
+.cell .core{position:absolute;inset:30%;border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff 0,#ffe7a3 18%,#f4b400 48%,#e0472c 78%,#9d1520 100%);box-shadow:0 0 60px 10px rgba(255,200,90,.55),inset -10px -14px 30px rgba(120,0,20,.5);animation:breathe 4.5s ease-in-out infinite}
+.cell .orbit{position:absolute;inset:0;transform-style:preserve-3d}
+.cell .ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.55);transform-style:preserve-3d}
+.cell .ring::before{content:"";position:absolute;top:-7px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#fff;box-shadow:0 0 16px 4px rgba(255,255,255,.8)}
+.cell .r1{animation:o1 9s linear infinite}
+.cell .r2{border-color:rgba(244,180,0,.8);animation:o2 12s linear infinite}
+.cell .r2::before{background:var(--gold);box-shadow:0 0 16px 4px rgba(244,180,0,.9)}
+.cell .r3{inset:12%;border-style:dashed;border-color:rgba(255,255,255,.35);animation:o3 16s linear infinite}
+@keyframes o1{from{transform:rotateX(72deg) rotateZ(0)}to{transform:rotateX(72deg) rotateZ(360deg)}}
+@keyframes o2{from{transform:rotateY(68deg) rotateX(20deg) rotateZ(0)}to{transform:rotateY(68deg) rotateX(20deg) rotateZ(-360deg)}}
+@keyframes o3{from{transform:rotateX(40deg) rotateY(-40deg) rotateZ(0)}to{transform:rotateX(40deg) rotateY(-40deg) rotateZ(360deg)}}
+@keyframes breathe{50%{transform:scale(1.08);box-shadow:0 0 90px 20px rgba(255,200,90,.7),inset -10px -14px 30px rgba(120,0,20,.5)}}
+@media(min-width:900px){.soon .wrap{grid-template-columns:1.3fr 1fr}}
+
+/* ---------- GALLERY ---------- */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:40px;grid-auto-flow:dense}
+.gal button{position:relative;border:0;padding:0;background:#dfe4f1;border-radius:6px;overflow:hidden;aspect-ratio:1;cursor:zoom-in;color:#fff;font:inherit;clip-path:inset(100% 0 0 0);transition:clip-path 1.1s var(--ease),transform .5s var(--ease);transition-delay:calc(var(--i)*90ms),0s}
+.gal.in button{clip-path:inset(0 0 0 0)}
+.gal button.tall{grid-row:span 2;aspect-ratio:auto}
+.gal button.wide{grid-column:span 2;aspect-ratio:16/9}
+.gal img{width:100%;height:100%;object-fit:cover;transform:scale(1.25);transition:transform 1.6s var(--ease)}
+.gal.in img{transform:scale(1)}
+.gal button:hover img{transform:scale(1.06)}
+.gal span.cap{position:absolute;inset:auto 0 0;padding:26px 12px 10px;text-align:start;font-size:var(--s-1);font-weight:700;background:linear-gradient(transparent,rgba(13,29,99,.85))}
+@media(min-width:760px){.gal{grid-template-columns:repeat(4,1fr);gap:12px}}
+.lb{position:fixed;inset:0;z-index:90;background:rgba(8,14,48,.94);display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.lb.open{opacity:1;visibility:visible}
+.lb img{max-height:84vh;max-width:100%;border-radius:6px;transform:scale(.9) rotateX(8deg);transition:transform .5s var(--spring)}
+.lb.open img{transform:none}
+.lb p{color:#fff;margin-top:12px;text-align:center}
+.lb button{position:absolute;top:16px;inset-inline-end:16px;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:var(--navy);font-size:1.6rem;line-height:1;cursor:pointer}
+
+/* ---------- REVIEWS ---------- */
+.reviews{padding-top:0}
+.rev{display:grid;gap:36px}
+.rating{font-size:var(--s1);color:var(--soft);margin-top:14px}
+.rating .stars{color:var(--gold);letter-spacing:2px;font-size:1.3rem}
+.quotes{display:grid;gap:28px}
+.quote{border-inline-start:6px solid var(--red);padding-inline-start:22px}
+.quote blockquote{font-family:"Lalezar",sans-serif;font-size:clamp(2rem,6vw,3rem);line-height:1.25;color:var(--navy)}
+.quote .tr{color:var(--soft);margin-top:2px}
+.quote cite{display:block;font-style:normal;font-weight:700;margin-top:10px;font-size:var(--s-1);color:var(--soft)}
+@media(min-width:900px){.rev{grid-template-columns:1fr 1.3fr;align-items:end}.quotes{grid-template-columns:1fr 1fr}}
+
+/* ---------- VISIT ---------- */
+.visit{background:var(--navy);color:#fff}
+.visit h2{color:#fff}
+.visit-grid{display:grid;gap:36px;margin-top:44px}
+.visit h3{font-family:var(--display);font-weight:400;font-size:var(--s2);line-height:1.2;margin-bottom:14px}
+html[lang=en] .visit h3{font-weight:700}
+.hours{list-style:none;border-top:1px solid rgba(255,255,255,.18)}
+.hours li{display:flex;justify-content:space-between;gap:12px;padding:11px 4px;border-bottom:1px solid rgba(255,255,255,.18)}
+.hours li.today{color:var(--gold);font-weight:700}
+.hours .off{opacity:.6}
+.visit .plate{margin-bottom:20px}
+.addr{font-size:var(--s1);line-height:1.5}
+.code{opacity:.65;margin-top:6px}
+.access{list-style:none;margin:20px 0 24px}
+.access li{display:flex;gap:10px;align-items:center;padding:4px 0;opacity:.88}
+.access svg{width:18px;height:18px;color:var(--gold);flex:none}
+.stack{display:flex;flex-wrap:wrap;gap:10px}
+.visit .btn-out{color:#fff}
+.map{border-radius:6px;overflow:hidden;min-height:340px;position:relative;background:#14308f}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media(min-width:960px){.visit-grid{grid-template-columns:1fr 1fr 1.3fr}.map{min-height:auto}}
+.social{list-style:none;display:grid;gap:0;margin-top:56px;border-top:1px solid rgba(255,255,255,.18)}
+.social a{display:flex;align-items:center;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(255,255,255,.18)}
+.social a:hover b{color:var(--gold)}
+.social .ic{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;flex:none;transition:transform .4s var(--spring)}
+.social a:hover .ic{transform:rotate(-8deg) scale(1.1)}
+.social .ic svg{width:22px;height:22px}
+.social b{display:block;transition:color .2s}
+.social small{opacity:.65}
+@media(min-width:900px){.social{grid-template-columns:repeat(3,1fr);column-gap:28px}}
+
+/* ---------- FOOTER ---------- */
+footer{background:#0a1243;color:#fff;padding:0 0 calc(88px + env(safe-area-inset-bottom))}
+footer::before{content:"";display:block;height:4px;background:var(--red)}
+footer .lights{margin-top:14px}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px 24px;padding:44px 0 40px}
+.f-brand{grid-column:1/-1}
+.f-logo{display:inline-flex;align-items:center;gap:14px}
+.f-logo img{width:74px;height:74px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px var(--gold),0 10px 30px -10px rgba(0,0,0,.6)}
+.f-logo b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.2}
+html[lang=en] .f-logo b{font-weight:700;font-size:1.35rem}
+.f-logo small{display:block;opacity:.7;font-size:var(--s-1)}
+.f-social{display:flex;gap:10px;margin-top:22px}
+.f-social a{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;transition:background .3s,color .3s,border-color .3s,transform .4s var(--spring)}
+.f-social a:hover{background:var(--gold);border-color:var(--gold);color:var(--navy);transform:translateY(-3px)}
+.f-social svg{width:22px;height:22px}
+footer h4{font-family:var(--display);font-weight:400;font-size:1.4rem;line-height:1.2;margin-bottom:18px}
+html[lang=en] footer h4{font-weight:700;font-size:1.2rem}
+footer ul{list-style:none;display:grid;gap:12px}
+footer ul a,footer ul span{opacity:.78;transition:opacity .2s,color .2s}
+footer ul a:hover{opacity:1;color:var(--gold)}
+.f-bottom{border-top:1px solid rgba(255,255,255,.14);padding:22px 0 26px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.f-bottom p{opacity:.75;font-size:var(--s-1)}
+.credit-wrap{display:flex;align-items:center;gap:12px;font-size:.95rem}
+.credit-wrap>span{opacity:.75}
+.credit{display:inline-flex;align-items:center;gap:10px;direction:ltr;padding:9px 18px;border-radius:99px;border:1px solid rgba(255,255,255,.3);font:700 1rem "Public Sans",sans-serif;letter-spacing:.01em;transition:background .3s,border-color .3s,transform .4s var(--spring)}
+.credit i{font-style:normal;color:#f7931e;margin:0 .22em}
+.credit svg{width:18px;height:18px;color:#25d366;flex:none}
+.credit:hover{background:rgba(37,211,102,.14);border-color:#25d366;transform:translateY(-2px)}
+@media(min-width:900px){footer{padding-bottom:0}.f-grid{grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:40px}.f-brand{grid-column:auto}}
+
+/* floating WhatsApp */
+.wa-float{position:fixed;z-index:70;inset-inline-end:20px;bottom:calc(92px + env(safe-area-inset-bottom));width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.7);transition:transform .4s var(--spring)}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:waPulse 2.2s infinite}
+.wa-float svg{width:32px;height:32px}
+.wa-float:hover{transform:scale(1.08)}
+@keyframes waPulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+@media(min-width:900px){.wa-float{bottom:24px}}
+
+/* mobile dock */
+.dock{position:fixed;inset:auto 12px calc(12px + env(safe-area-inset-bottom));z-index:60;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;border-radius:14px;background:var(--navy);box-shadow:0 14px 34px -10px rgba(0,0,0,.45);transform:translateY(150%);transition:transform .5s var(--spring)}
+.dock.show{transform:none}
+.dock a{display:flex;justify-content:center;align-items:center;gap:8px;min-height:48px;border-radius:9px;font-weight:700;color:#fff}
+.dock a svg{width:18px;height:18px}
+.dock a:first-child{background:var(--gold);color:var(--navy)}
+.dock a:last-child{background:rgba(255,255,255,.1)}
+@media(min-width:900px){.dock{display:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .wd>span,.rv,.sign,.dental-photos figure,.hero h1 .ln>span,.hero .fx{transform:none!important;opacity:1!important}
+  .gal button{clip-path:none!important}.gal img{transform:none!important}
+  .lights i{opacity:1!important;background:var(--gold)!important}
+  .loader{display:none}
+}
+</style>
+</head>
+<body class="locked">
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-logo"><svg viewBox="0 0 64 64"><circle class="c1" cx="32" cy="32" r="30"/><circle class="c2" cx="32" cy="32" r="26.5"/></svg><img src="img/logo-192.png" alt=""></div>
+  <p>مركز الرومي الطبي</p>
+  <div class="bar"><i></i></div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="seal" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#d7262e"/><circle cx="32" cy="32" r="23" fill="none" stroke="#f4b400" stroke-width="2.5"/><path d="M32 19v26M19 32h26" stroke="#fff" stroke-width="6.5" stroke-linecap="round"/></symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-dir" viewBox="0 0 24 24"><path fill="currentColor" d="M21.7 2.3a1 1 0 0 0-1.1-.2l-18 8a1 1 0 0 0 .1 1.9l7.4 2 2 7.4a1 1 0 0 0 1.9.1l8-18a1 1 0 0 0-.3-1.2z"/></symbol>
+  <symbol id="phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3 .78.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.25-.12-1.46-.72-1.69-.8s-.39-.12-.55.12-.63.8-.78.97-.29.18-.53.06a6.7 6.7 0 0 1-3.34-2.92c-.25-.43.25-.4.72-1.34a.46.46 0 0 0-.02-.43c-.06-.12-.55-1.33-.76-1.82s-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.17 3.68c1.55.67 2.16.73 2.93.61a2.5 2.5 0 0 0 1.65-1.16 2 2 0 0 0 .14-1.16c-.06-.1-.22-.16-.47-.28z"/></symbol>
+  <symbol id="fb" viewBox="0 0 24 24"><path fill="currentColor" d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.2A21 21 0 0 0 14.6 2C12.2 2 10.6 3.5 10.6 6.2v2.3H8V12h2.6v10H14V12h2.7l.4-3.5z"/></symbol>
+  <symbol id="tt" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.3 6.3 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.4 1.4V6.7a4.5 4.5 0 0 1-4.4-4.7z"/></symbol>
+  <symbol id="wheel" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2" fill="currentColor"/><path d="M11 7v6h5l2 5M9 10a6 6 0 1 0 7.5 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="tooth" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M7 3c-2.5 0-4 2-4 4.5 0 3 1.5 4 2 7 .5 3 1 6.5 3 6.5s1.8-4 4-4 2 4 4 4 2.5-3.5 3-6.5c.5-3 2-4 2-7C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand"><img class="seal" src="img/logo-64.png" alt="" width="36" height="36"><span class="ar">مركز الرومي الطبي</span><span class="en">Alroomy</span></a>
+    <ul>
+      <li><a href="#clinics"><span class="ar">العيادات</span><span class="en">Clinics</span></a></li>
+      <li><a href="#dental"><span class="ar">قسم الأسنان</span><span class="en">Dental</span></a></li>
+      <li><a href="#gallery"><span class="ar">صور المركز</span><span class="en">Photos</span></a></li>
+      <li><a href="#visit"><span class="ar">المواعيد والعنوان</span><span class="en">Hours &amp; address</span></a></li>
+    </ul>
+    <button class="lang" id="lang" aria-label="Switch language"><span class="ar">English</span><span class="en">العربية</span></button>
+  </div>
+  <i class="progress" id="progress"></i>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-photo"><picture><source srcset="img/facade-day.webp" type="image/webp"><img src="img/facade-day.jpg" alt="واجهة مركز الرومي الطبي في شارع الشنقيطي"></picture></div>
+  <canvas id="scene" aria-label="مجسّم ثلاثي الأبعاد لمبنى مركز الرومي الطبي" role="img"></canvas>
+  <div class="hero-shade"></div>
+  <div class="wrap hero-in">
+    <div>
+      <h1>
+        <span class="ar"><span class="ln"><span>مركز الرومي</span></span><span class="ln"><span>الطبي</span></span><small class="fx">ALROOMY MEDICAL CENTRE</small></span>
+        <span class="en"><span class="ln"><span>Alroomy</span></span><span class="ln"><span>Medical Centre</span></span><small class="fx">مركز الرومي الطبي</small></span>
+      </h1>
+      <p class="where fx"><span class="ar">عيادات الاختصاصيين تحت سقف واحد، في محطة الرومي على شارع الشنقيطي بأم درمان.</span><span class="en">Specialist clinics under one roof, at Al-Roumi station on Shangiti Street, Omdurman.</span></p>
+      <div class="hero-row fx">
+        <div class="plate js-status" role="status">
+          <span class="top"><span class="dot"></span><span class="ar">حالة المركز</span><span class="en">Right now</span></span>
+          <span class="panel js-status-text"></span>
+        </div>
+        <a class="btn btn-gold" href="https://www.google.com/maps/dir/?api=1&destination=15.6913307,32.476465" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-dir"/></svg><span class="ar">احصل على الاتجاهات</span><span class="en">Get directions</span></a>
+        <a class="btn btn-out" href="#clinics"><span class="ar">اعرض العيادات</span><span class="en">See the clinics</span></a>
+      </div>
+    </div>
+  </div>
+  <svg class="ecg" viewBox="0 0 1200 64" preserveAspectRatio="none" aria-hidden="true"><path class="base" id="ecgBase"/><path class="beat" id="ecgBeat" pathLength="1000"/><path class="beat g" id="ecgBeat2" pathLength="1000"/></svg>
+  <span class="scroll-cue" aria-hidden="true"></span>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<section class="wall" id="clinics">
+  <div class="wrap">
+    <div class="lights" data-n="18" aria-hidden="true"></div>
+    <h2 class="split"><span class="ar">لوحة الاختصاصيين</span><span class="en">The specialists' board</span></h2>
+    <p class="lead rv"><span class="ar">كما على واجهة المبنى: لكل اختصاص لوحته. اختر العيادة التي تحتاجها، وتجد غيرها في الطابق نفسه.</span><span class="en">Just like the front of the building, every specialty has its own sign. Find the clinic you need — the others are a few doors away.</span></p>
+    <div class="signs" id="signs"></div>
+    <p class="after rv"><span class="ar">لمواعيد كل عيادة وأسماء الأطباء، تواصل مع استقبال المركز.</span><span class="en">For each clinic's days and doctors, ask the centre's reception.</span></p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <figure class="rv"><picture><source srcset="img/facade-night.webp" type="image/webp"><img id="parallax" src="img/facade-night.jpg" alt="مركز الرومي الطبي ليلاً" loading="lazy"></picture></figure>
+    <div>
+      <h2 class="split"><span class="ar">المبنى الأزرق في الشنقيطي</span><span class="en">The blue building on Shangiti</span></h2>
+      <p class="lead rv"><span class="ar">يعرفه أهل أم درمان بواجهته الزرقاء ولافتته الحمراء وأضوائه الذهبية التي تبقى مضاءة حتى الحادية عشرة ليلاً. وقد ظلّ المركز يستقبل المرضى حتى في أصعب الظروف التي مرّت بها المدينة.</span><span class="en">Omdurman knows it by its blue façade, red lettering and the gold lights that stay on until 11 at night. The centre kept receiving patients even through the hardest days the city has seen.</span></p>
+      <div class="stats rv">
+        <div><b class="num" data-count="12">12</b><small><span class="ar">تخصصاً طبياً</span><span class="en">specialties</span></small></div>
+        <div><b class="num" data-count="15">15</b><small><span class="ar">ساعة عمل يومياً</span><span class="en">hours a day</span></small></div>
+        <div><b class="num" data-count="6">6</b><small><span class="ar">أيام في الأسبوع</span><span class="en">days a week</span></small></div>
+      </div>
+      <ul class="facts rv">
+        <li><svg aria-hidden="true"><use href="#pin"/></svg><span><span class="ar">شارع الشنقيطي، محطة الرومي، أم درمان</span><span class="en">Shangiti Street, Al-Roumi station, Omdurman</span></span></li>
+        <li><svg aria-hidden="true"><use href="#clock"/></svg><span><span class="ar">من السبت إلى الخميس، من 8 صباحاً حتى 11 ليلاً</span><span class="en">Saturday to Thursday, 8 AM to 11 PM</span></span></li>
+        <li><svg aria-hidden="true"><use href="#wheel"/></svg><span><span class="ar">مدخل وموقف سيارات ودورة مياه مهيّأة للكراسي المتحركة</span><span class="en">Wheelchair-accessible entrance, parking and restroom</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="dental" id="dental">
+  <div class="wrap">
+    <div>
+      <h2 class="split"><span class="ar">قسم الأسنان والأنف والأذن والحنجرة</span><span class="en">Dental &amp; ENT department</span></h2>
+      <p class="lead rv"><span class="ar">مركز الرومي لطب وزراعة وتقويم الأسنان: عيادات مجهّزة ومعمل أسنان داخل المركز، وله أرقام تواصل مباشرة.</span><span class="en">Alroomy's centre for dentistry, implants and orthodontics: equipped treatment rooms, an in-house dental lab, and its own direct phone lines.</span></p>
+      <ul class="services rv">
+        <li><span class="ar">طب الأسنان</span><span class="en">General dentistry</span></li>
+        <li><span class="ar">زراعة الأسنان</span><span class="en">Dental implants</span></li>
+        <li><span class="ar">تقويم الأسنان</span><span class="en">Orthodontics</span></li>
+        <li><span class="ar">جراحة الفم والوجه والفكين</span><span class="en">Oral &amp; maxillofacial surgery</span></li>
+        <li><span class="ar">الأنف والأذن والحنجرة</span><span class="en">Ear, nose &amp; throat</span></li>
+        <li><span class="ar">معمل أسنان</span><span class="en">Dental lab</span></li>
+      </ul>
+      <div class="contact-row rv">
+        <a class="btn btn-wa" href="https://wa.me/249115666611" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg><span class="ar">راسلنا على واتساب</span><span class="en">Message on WhatsApp</span></a>
+        <a class="btn btn-red" href="tel:+249115666610"><svg aria-hidden="true"><use href="#phone"/></svg><span class="num">0115 666 610</span></a>
+        <a class="btn btn-out" href="tel:+249115666611"><svg aria-hidden="true"><use href="#phone"/></svg><span class="num">0115 666 611</span></a>
+      </div>
+    </div>
+    <div class="dental-photos" id="dentalPhotos">
+      <figure><picture><source srcset="img/dental-suite.webp" type="image/webp"><img src="img/dental-suite.jpg" alt="غرفة علاج الأسنان" loading="lazy"></picture></figure>
+      <figure><picture><source srcset="img/dental-lab.webp" type="image/webp"><img src="img/dental-lab.jpg" alt="جهاز في معمل الأسنان" loading="lazy"></picture></figure>
+      <figure><picture><source srcset="img/dental-lounge.webp" type="image/webp"><img src="img/dental-lounge.jpg" alt="قسم الأسنان" loading="lazy"></picture></figure>
+    </div>
+  </div>
+</section>
+
+<section class="soon">
+  <div class="wrap">
+    <div>
+      <span class="soon-tag rv"><span class="ar">يفتتح قريباً</span><span class="en">Opening soon</span></span>
+      <h2 class="split" style="margin-top:14px"><span class="ar">مركز الرومي للخصوبة والإنجاب</span><span class="en">Alroomy Fertility Centre</span></h2>
+      <p class="rv" style="margin:12px 0 26px"><span class="ar">لأول مرة في أم درمان. تابع حساب المركز على تيك توك ليصلك موعد الافتتاح.</span><span class="en">A first for Omdurman. Follow the centre on TikTok to hear the opening date.</span></p>
+      <a class="btn btn-gold rv" href="https://www.tiktok.com/@alroomy_medical" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#tt"/></svg><span class="ar">تابع على تيك توك</span><span class="en">Follow on TikTok</span></a>
+    </div>
+    <div class="cell" aria-hidden="true">
+      <div class="orbit"><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span></div>
+      <span class="core"></span>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <h2 class="split"><span class="ar">من داخل المركز</span><span class="en">Inside the centre</span></h2>
+    <div class="gal" id="gal">
+      <button class="wide" style="--i:0" data-full="img/facade-day.jpg"><picture><source srcset="img/facade-day.webp" type="image/webp"><img src="img/facade-day.jpg" alt="" loading="lazy"></picture><span class="cap"><span class="ar">الواجهة نهاراً</span><span class="en">The façade by day</span></span></button>
+      <button class="tall" style="--i:1" data-full="img/reception.jpg"><picture><source srcset="img/reception.webp" type="image/webp"><img src="img/reception.jpg" alt="" loading="lazy"></picture><span class="cap"><span class="ar">الاستقبال</span><span class="en">Reception</span></span></button>
+      <button class="tall" style="--i:2" data-full="img/waiting-hall.jpg"><picture><source srcset="img/waiting-hall.webp" type="image/webp"><img src="img/waiting-hall.jpg" alt="" loading="lazy"></picture><span class="cap"><span class="ar">قاعة الانتظار</span><span class="en">Waiting hall</span></span></button>
+      <button style="--i:3" data-full="img/dental-suite.jpg"><picture><source srcset="img/dental-suite.webp" type="image/webp"><img src="img/dental-suite.jpg" alt="" loading="lazy"></picture><span class="cap"><span class="ar">عيادة الأسنان</span><span class="en">Dental room</span></span></button>
+      <button style="--i:4" data-full="img/dental-lab.jpg"><picture><source srcset="img/dental-lab.webp" type="image/webp"><img src="img/dental-lab.jpg" alt="" loading="lazy"></picture><span class="cap"><span class="ar">معمل الأسنان</span><span class="en">Dental lab</span></span></button>
+      <button class="wide" style="--i:5" data-full="img/facade-night.jpg"><picture><source srcset="img/facade-night.webp" type="image/webp"><img src="img/facade-night.jpg" alt="" loading="lazy"></picture><span class="cap"><span class="ar">المركز ليلاً</span><span class="en">The centre at night</span></span></button>
+      <button class="wide" style="--i:6" data-full="img/dental-lounge.jpg"><picture><source srcset="img/dental-lounge.webp" type="image/webp"><img src="img/dental-lounge.jpg" alt="" loading="lazy"></picture><span class="cap"><span class="ar">قسم الأسنان</span><span class="en">Dental department</span></span></button>
+    </div>
+  </div>
+</section>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo"><button aria-label="Close">×</button><figure><img alt=""><p></p></figure></div>
+
+<section class="reviews">
+  <div class="wrap rev">
+    <div>
+      <h2 class="split"><span class="ar">ماذا قال الزوار</span><span class="en">What visitors said</span></h2>
+      <p class="rating rv"><span class="stars" aria-hidden="true">★★★★</span> <span class="ar">تقييم <b class="num" data-count="4.0" data-dec="1">4.0</b> من 5 على خرائط Google، من <b class="num" data-count="64">64</b> مراجعة.</span><span class="en">Rated <b class="num" data-count="4.0" data-dec="1">4.0</b> out of 5 on Google Maps, from <b class="num" data-count="64">64</b> reviews.</span></p>
+    </div>
+    <div class="quotes">
+      <figure class="quote rv">
+        <blockquote lang="ar">ممتاز و نظيف</blockquote>
+        <p class="tr en">“Excellent and clean.”</p>
+        <cite>Akram Mohamed</cite>
+      </figure>
+      <figure class="quote rv">
+        <blockquote lang="ar">المركز جيد جداً</blockquote>
+        <p class="tr en">“The centre is very good.”</p>
+        <cite>علياء الحسن</cite>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap">
+    <h2 class="split"><span class="ar">المواعيد والعنوان</span><span class="en">Hours and address</span></h2>
+    <div class="visit-grid">
+      <div class="rv">
+        <h3><span class="ar">ساعات العمل</span><span class="en">Opening hours</span></h3>
+        <div class="plate js-status" role="status">
+          <span class="top"><span class="dot"></span><span class="ar">حالة المركز</span><span class="en">Right now</span></span>
+          <span class="panel js-status-text"></span>
+        </div>
+        <ul class="hours" id="hours"></ul>
+      </div>
+      <div class="rv">
+        <h3><span class="ar">كيف تصل</span><span class="en">Getting here</span></h3>
+        <p class="addr"><span class="ar">شارع الشنقيطي، محطة الرومي، أم درمان، السودان</span><span class="en">Shangiti Street, Al-Roumi station, Omdurman, Sudan</span></p>
+        <p class="code num">MFRG+GHP</p>
+        <ul class="access">
+          <li><svg aria-hidden="true"><use href="#wheel"/></svg><span class="ar">مدخل مهيّأ للكراسي المتحركة</span><span class="en">Wheelchair-accessible entrance</span></li>
+          <li><svg aria-hidden="true"><use href="#wheel"/></svg><span class="ar">موقف سيارات مهيّأ</span><span class="en">Accessible parking</span></li>
+          <li><svg aria-hidden="true"><use href="#wheel"/></svg><span class="ar">دورة مياه مهيّأة</span><span class="en">Accessible restroom</span></li>
+        </ul>
+        <div class="stack">
+          <a class="btn btn-gold" href="https://www.google.com/maps/dir/?api=1&destination=15.6913307,32.476465" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-dir"/></svg><span class="ar">افتح في خرائط Google</span><span class="en">Open in Google Maps</span></a>
+          <a class="btn btn-out" href="https://www.waze.com/ul?ll=15.6913307,32.476465&navigate=yes" target="_blank" rel="noopener"><span class="ar">افتح في Waze</span><span class="en">Open in Waze</span></a>
+        </div>
+      </div>
+      <div class="map rv"><iframe title="خريطة موقع مركز الرومي الطبي" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=15.6913307,32.476465&z=16&output=embed"></iframe></div>
+    </div>
+
+    <ul class="social">
+      <li class="rv"><a href="https://www.facebook.com/p/%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%B1%D9%88%D9%85%D9%8A-%D8%A7%D9%84%D8%B7%D8%A8%D9%8A-100076650661014/" target="_blank" rel="noopener"><span class="ic" style="background:#1877f2"><svg aria-hidden="true"><use href="#fb"/></svg></span><span><b><span class="ar">صفحة المركز على فيسبوك</span><span class="en">The centre on Facebook</span></b><small>Facebook</small></span></a></li>
+      <li class="rv"><a href="https://www.facebook.com/alroomydent/" target="_blank" rel="noopener"><span class="ic" style="background:var(--red)"><svg aria-hidden="true"><use href="#tooth"/></svg></span><span><b><span class="ar">صفحة قسم الأسنان</span><span class="en">Dental &amp; ENT on Facebook</span></b><small class="num">alroomydent</small></span></a></li>
+      <li class="rv"><a href="https://www.tiktok.com/@alroomy_medical" target="_blank" rel="noopener"><span class="ic" style="background:#000"><svg aria-hidden="true"><use href="#tt"/></svg></span><span><b><span class="ar">المركز على تيك توك</span><span class="en">The centre on TikTok</span></b><small class="num">@alroomy_medical</small></span></a></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="lights" data-n="18" aria-hidden="true"></div>
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="#top" class="f-logo"><img src="img/logo-192.png" alt="شعار مركز الرومي الطبي" width="74" height="74" loading="lazy"><span><b><span class="ar">مركز الرومي الطبي</span><span class="en">Alroomy Medical Centre</span></b><small><span class="ar">عيادات الاختصاصيين تحت سقف واحد</span><span class="en">Specialist clinics under one roof</span></small></span></a>
+        <div class="f-social">
+          <a href="https://www.facebook.com/p/%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%B1%D9%88%D9%85%D9%8A-%D8%A7%D9%84%D8%B7%D8%A8%D9%8A-100076650661014/" target="_blank" rel="noopener" aria-label="Facebook"><svg aria-hidden="true"><use href="#fb"/></svg></a>
+          <a href="https://www.facebook.com/alroomydent/" target="_blank" rel="noopener" aria-label="Dental Facebook"><svg aria-hidden="true"><use href="#tooth"/></svg></a>
+          <a href="https://www.tiktok.com/@alroomy_medical" target="_blank" rel="noopener" aria-label="TikTok"><svg aria-hidden="true"><use href="#tt"/></svg></a>
+          <a href="https://wa.me/249115666611" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4><span class="ar">تصفّح</span><span class="en">Browse</span></h4>
+        <ul>
+          <li><a href="#clinics"><span class="ar">العيادات</span><span class="en">Clinics</span></a></li>
+          <li><a href="#about"><span class="ar">عن المركز</span><span class="en">About</span></a></li>
+          <li><a href="#gallery"><span class="ar">صور المركز</span><span class="en">Photos</span></a></li>
+          <li><a href="#visit"><span class="ar">المواعيد والعنوان</span><span class="en">Hours &amp; address</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="ar">الأقسام</span><span class="en">Departments</span></h4>
+        <ul>
+          <li><a href="#clinics"><span class="ar">الباطنية والسكري</span><span class="en">Internal medicine &amp; diabetes</span></a></li>
+          <li><a href="#clinics"><span class="ar">طب الأطفال</span><span class="en">Paediatrics</span></a></li>
+          <li><a href="#clinics"><span class="ar">النساء والتوليد</span><span class="en">Obstetrics &amp; gynaecology</span></a></li>
+          <li><a href="#dental"><span class="ar">الأسنان والأنف والأذن</span><span class="en">Dental &amp; ENT</span></a></li>
+          <li><a href="#clinics"><span class="ar">الجراحة العامة</span><span class="en">General surgery</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="ar">تواصل معنا</span><span class="en">Contact us</span></h4>
+        <ul>
+          <li><a class="num" href="tel:+249115666610">0115 666 610</a></li>
+          <li><a class="num" href="tel:+249115666611">0115 666 611</a></li>
+          <li><span><span class="ar">السودان — أم درمان</span><span class="en">Omdurman, Sudan</span></span></li>
+          <li><span><span class="ar">شارع الشنقيطي — محطة الرومي</span><span class="en">Shangiti Street, Al-Roumi station</span></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <p>© <span id="yr"></span> <span class="ar">جميع الحقوق محفوظة لمركز الرومي الطبي</span><span class="en">All rights reserved, Alroomy Medical Centre</span></p>
+      <div class="credit-wrap">
+        <span><span class="ar">تصميم وتطوير</span><span class="en">Designed &amp; developed by</span></span>
+        <a class="credit" id="credit" href="#" target="_blank" rel="noopener" aria-label="Shasha Tech Solutions WhatsApp"><span>sh<i>a</i>sh<i>a</i> tech solutions</span><svg aria-hidden="true"><use href="#wa"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<a class="wa-float" href="https://wa.me/249115666611" target="_blank" rel="noopener" aria-label="راسل قسم الأسنان على واتساب"><svg aria-hidden="true"><use href="#wa"/></svg></a>
+
+<nav class="dock" id="dock" aria-label="Quick actions">
+  <a href="https://www.google.com/maps/dir/?api=1&destination=15.6913307,32.476465" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-dir"/></svg><span class="ar">الاتجاهات</span><span class="en">Directions</span></a>
+  <a href="#visit"><svg aria-hidden="true"><use href="#clock"/></svg><span class="ar">المواعيد</span><span class="en">Hours</span></a>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  // Shasha Tech Solutions WhatsApp number, international format without "+" (e.g. 2499XXXXXXXX)
+  var SHASHA_WHATSAPP="249000000000";
+  var root=document.documentElement,body=document.body;
+  var reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var finePointer=window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+
+  document.getElementById("credit").href="https://wa.me/"+SHASHA_WHATSAPP+"?text="+encodeURIComponent("مرحباً Shasha Tech Solutions، شاهدت موقع مركز الرومي الطبي وأرغب في موقع مماثل.");
+
+  var T={
+    ar:{open:"مفتوح الآن حتى 11 ليلاً",closed:"مغلق الآن، يفتح ",today:"اليوم",at8:"اليوم 8 صباحاً",tmw:"غداً 8 صباحاً",sat:"السبت 8 صباحاً",notListed:"غير مدرج"},
+    en:{open:"Open now until 11 PM",closed:"Closed now, opens ",today:"today",at8:"today at 8 AM",tmw:"tomorrow at 8 AM",sat:"Saturday at 8 AM",notListed:"Not listed"}};
+  var DAYS={ar:["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],en:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]};
+  var ORDER=[6,0,1,2,3,4,5];
+
+  // [Arabic name, English name] from the centre's directory listing
+  var SPECS=[
+    ["الباطنية","Internal medicine"],["السكري والغدد الصماء","Diabetes & endocrinology"],["أمراض الكلى","Kidney diseases"],
+    ["طب الأطفال","Paediatrics"],["النساء والتوليد والموجات الصوتية","Obstetrics, gynaecology & ultrasound"],["الأنف والأذن والحنجرة","Ear, nose & throat"],
+    ["الجلدية والتناسلية","Dermatology & venereology"],["العظام والإصابات","Orthopaedics & injuries"],["الأسنان وجراحة الفم","Dentistry & oral surgery"],
+    ["الصدر والباطنية","Chest & internal medicine"],["المخ والأعصاب والعمود الفقري","Brain, nerves & spine"],["الجراحة العامة","General surgery"]];
+  function esc(s){return s.replace(/&/g,"&amp;")}
+  var wall=document.getElementById("signs");
+  SPECS.forEach(function(s,i){
+    var d=document.createElement("div");d.className="sign";d.style.setProperty("--i",i);
+    d.innerHTML='<div class="face" data-tilt><span class="who"><span class="ar">عيادة اختصاصي</span><span class="en">Specialist clinic</span></span>'+
+      '<span class="what"><b><span class="ar">'+s[0]+'</span><span class="en">'+esc(s[1])+'</span></b><span class="alt"><span class="ar">'+esc(s[1])+'</span><span class="en">'+s[0]+'</span></span></span><i class="glare"></i></div>';
+    wall.appendChild(d);
+  });
+  var track=document.getElementById("track"),items="";
+  SPECS.concat([["طب وزراعة وتقويم الأسنان","Dentistry, implants & orthodontics"]]).forEach(function(s){items+='<span><span class="ar">'+s[0]+'</span><span class="en">'+esc(s[1])+'</span></span>'});
+  track.innerHTML=items+items;
+
+  // heartbeat path
+  var d="M0 40";
+  for(var x=0;x<1200;x+=300){d+=" H"+(x+150)+" l12 -6 l10 6 h14 l9 -30 l12 56 l9 -34 l7 8 h26 l16 -9 l16 9"}
+  d+=" H1200";
+  ["ecgBase","ecgBeat","ecgBeat2"].forEach(function(id){document.getElementById(id).setAttribute("d",d)});
+
+  // headline word split
+  document.querySelectorAll("h2.split .ar, h2.split .en").forEach(function(s){
+    s.innerHTML=s.textContent.split(" ").map(function(w,i){return '<span class="wd" style="--w:'+i+'"><span>'+esc(w)+'</span></span>'}).join(" ");
+  });
+
+  // facade lights rows
+  var lightRows=document.querySelectorAll(".lights");
+  lightRows.forEach(function(row){
+    var n=window.innerWidth<700?10:+row.dataset.n;
+    for(var i=0;i<n;i++){var e=document.createElement("i");e.style.setProperty("--k",i);row.appendChild(e);}
+  });
+
+  // reveal on scroll
+  function countUp(el){
+    var to=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),t0=null;
+    if(reduced){el.textContent=to.toFixed(dec);return}
+    function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400),v=to*(1-Math.pow(1-k,3));el.textContent=v.toFixed(dec);if(k<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+  var targets=document.querySelectorAll(".rv,h2.split,.signs,.gal,.dental-photos,.lights,[data-count]");
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(!e.isIntersecting)return;var t=e.target;
+      if(t.dataset.count)countUp(t);else t.classList.add(t.classList.contains("lights")?"on":"in");
+      io.unobserve(t);
+    })},{threshold:.15,rootMargin:"0px 0px -40px 0px"});
+    targets.forEach(function(t){io.observe(t)});
+  } else targets.forEach(function(t){t.classList.add("in","on")});
+
+  // 3D tilt
+  if(finePointer&&!reduced){
+    document.querySelectorAll("[data-tilt], .gal button").forEach(function(el){
+      el.addEventListener("pointermove",function(e){
+        var r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+        el.style.transform="perspective(700px) rotateY("+(px*16)+"deg) rotateX("+(-py*16)+"deg) translateZ(14px)";
+        el.style.setProperty("--gx",(px+.5)*100+"%");el.style.setProperty("--gy",(py+.5)*100+"%");
+      });
+      el.addEventListener("pointerleave",function(){el.style.transform=""});
+    });
+  }
+
+  // opening hours
+  function khartoumNow(){
+    var p=new Intl.DateTimeFormat("en-US",{timeZone:"Africa/Khartoum",weekday:"short",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
+    var o={};p.forEach(function(x){o[x.type]=x.value});
+    return {day:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(o.weekday),h:(+o.hour)%24+(+o.minute)/60};
+  }
+  function render(){
+    var lang=root.lang,t=T[lang],now=khartoumNow(),workDay=now.day!==5,open=workDay&&now.h>=8&&now.h<23;
+    var ul=document.getElementById("hours");ul.innerHTML="";
+    ORDER.forEach(function(d){
+      var li=document.createElement("li");if(d===now.day)li.className="today";
+      li.innerHTML="<span>"+DAYS[lang][d]+(d===now.day?" ("+t.today+")":"")+"</span>"+(d===5?'<span class="off">'+t.notListed+'</span>':'<span class="num">8:00 – 23:00</span>');
+      ul.appendChild(li);
+    });
+    var next=(workDay&&now.h<8)?t.at8:((now.day===4&&now.h>=23)||now.day===5)?t.sat:t.tmw;
+    var msg=open?t.open:t.closed+next;
+    document.querySelectorAll(".js-status").forEach(function(p){p.classList.toggle("closed",!open)});
+    document.querySelectorAll(".js-status-text").forEach(function(p){p.textContent=msg});
+  }
+
+  var scene3d=null;
+  function setLang(l){
+    root.lang=l;root.dir=l==="ar"?"rtl":"ltr";
+    try{localStorage.setItem("alroomy-lang",l)}catch(e){}
+    render();if(scene3d)scene3d.layout();
+  }
+  var saved;try{saved=localStorage.getItem("alroomy-lang")}catch(e){}
+  if(saved==="en")setLang("en");else render();
+  document.getElementById("lang").onclick=function(){setLang(root.lang==="ar"?"en":"ar")};
+  setInterval(render,60000);
+
+  // scroll: nav, progress, dock, parallax
+  var nav=document.getElementById("nav"),dock=document.getElementById("dock"),prog=document.getElementById("progress"),par=document.getElementById("parallax"),ticking=false;
+  function onScroll(){
+    ticking=false;var y=window.scrollY,max=document.documentElement.scrollHeight-innerHeight;
+    nav.classList.toggle("solid",y>40);dock.classList.toggle("show",y>innerHeight*.6);
+    prog.style.transform="scaleX("+(max>0?y/max:0)+")";
+    if(!reduced&&par){var r=par.parentNode.parentNode.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight){par.style.setProperty("--py",((r.top+r.height/2-innerHeight/2)*-.12)+"px")}}
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});window.addEventListener("resize",onScroll);onScroll();
+
+  // lightbox
+  var lb=document.getElementById("lb"),lbi=lb.querySelector("img"),lbp=lb.querySelector("p"),last;
+  document.querySelectorAll("#gal button").forEach(function(b){b.onclick=function(){
+    last=b;lbi.src=b.dataset.full;lbp.textContent=b.querySelector(root.lang==="ar"?".cap .ar":".cap .en").textContent;
+    lb.classList.add("open");lb.querySelector("button").focus();
+  }});
+  function closeLb(){if(!lb.classList.contains("open"))return;lb.classList.remove("open");if(last)last.focus()}
+  lb.onclick=function(e){if(e.target!==lbi)closeLb()};
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeLb()});
+  document.getElementById("yr").textContent=new Date().getFullYear();
+
+  /* ================= 3D BUILDING ================= */
+  function buildScene(){
+    if(!window.THREE)return null;
+    var hero=document.getElementById("top"),canvas=document.getElementById("scene"),renderer;
+    try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true,powerPreference:"high-performance"})}catch(e){return null}
+    if(!renderer.getContext())return null;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.75));
+    renderer.outputEncoding=THREE.sRGBEncoding;
+    var scene=new THREE.Scene();scene.fog=new THREE.Fog(0x301e62,38,110);
+    var cam=new THREE.PerspectiveCamera(34,1,.1,300);
+    var aniso=renderer.capabilities.getMaxAnisotropy();
+    function cv(w,h){var c=document.createElement("canvas");c.width=w;c.height=h;return c}
+    function tex(c){var t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.anisotropy=aniso;return t}
+    function seal(g,cx,cy,r){
+      g.fillStyle="#d7262e";g.beginPath();g.arc(cx,cy,r,0,7);g.fill();
+      g.strokeStyle="#f4b400";g.lineWidth=r*.12;g.beginPath();g.arc(cx,cy,r*.75,0,7);g.stroke();
+      g.strokeStyle="#fff";g.lineWidth=r*.22;g.lineCap="round";g.beginPath();g.moveTo(cx,cy-r*.42);g.lineTo(cx,cy+r*.42);g.moveTo(cx-r*.42,cy);g.lineTo(cx+r*.42,cy);g.stroke();
+    }
+    function tiles(g,w,top,bottom){
+      g.fillStyle="#eadcc2";g.fillRect(0,0,w,1024);
+      g.strokeStyle="rgba(80,60,40,.24)";g.lineWidth=3;g.beginPath();
+      for(var x=0;x<=w;x+=96){g.moveTo(x,top);g.lineTo(x,bottom)}
+      for(var y=top;y<=bottom;y+=88){g.moveTo(0,y);g.lineTo(w,y)}
+      g.stroke();
+    }
+    function signRow(g,h,w,count,step,x0){
+      g.fillStyle="#1c3fb0";g.fillRect(0,790,w,110);
+      for(var i=0;i<count;i++){var sx=x0+i*step;
+        g.fillStyle="#fff";g.fillRect(sx,806,80,78);g.fillStyle="#1c2f80";g.fillRect(sx+6,822,68,3);g.fillStyle="#d7262e";g.fillRect(sx+6,832,68,46);
+        h.fillStyle="#666";h.fillRect(sx,806,80,78);h.fillStyle="#c41c1c";h.fillRect(sx+6,832,68,46);}
+    }
+    function groundFloor(g,h,w,count,step,x0){
+      g.fillStyle="#141a33";g.fillRect(0,900,w,124);
+      for(var j=0;j<count;j++){var gx=x0+j*step,gr=g.createLinearGradient(0,920,0,1024);
+        gr.addColorStop(0,"#ffe1a6");gr.addColorStop(1,"#ff9f45");g.fillStyle=gr;g.fillRect(gx,922,150,102);
+        g.fillStyle="rgba(20,26,51,.6)";g.fillRect(gx+72,922,6,102);
+        h.fillStyle="#ffb565";h.fillRect(gx,922,150,102);}
+    }
+    // front facade
+    var F=cv(2048,1024),g=F.getContext("2d"),E=cv(2048,1024),h=E.getContext("2d");
+    h.fillStyle="#000";h.fillRect(0,0,2048,1024);
+    tiles(g,2048,82,790);
+    var sh=g.createLinearGradient(0,0,2048,0);sh.addColorStop(0,"rgba(255,190,120,.22)");sh.addColorStop(1,"rgba(40,20,60,.2)");g.fillStyle=sh;g.fillRect(0,0,2048,790);
+    g.fillStyle="#1c3fb0";g.fillRect(0,0,2048,82);
+    [[120,64],[690,84],[1300,64],[1660,64]].forEach(function(p){g.fillStyle="#1c3fb0";g.fillRect(p[0],82,p[1],708);g.fillStyle="rgba(255,255,255,.1)";g.fillRect(p[0],82,6,708)});
+    [[470,150],[900,150],[1200,150],[1500,150],[1860,150],[470,580],[900,580],[1200,580],[1500,580],[1860,580]].forEach(function(w,i){
+      g.fillStyle="#f5f5f5";g.fillRect(w[0]-6,w[1]-6,82,102);g.fillStyle="#283152";g.fillRect(w[0],w[1],70,90);g.fillStyle="rgba(255,255,255,.14)";g.fillRect(w[0],w[1],70,40);
+      if(i%3===1){g.fillStyle="#ffdca8";g.fillRect(w[0],w[1],70,90);h.fillStyle="#ffcf8a";h.fillRect(w[0],w[1],70,90)}
+    });
+    [[g,"#d7262e",0],[h,"#ff2a2a",26]].forEach(function(o){var c=o[0];c.save();c.fillStyle=o[1];c.shadowColor=o[1];c.shadowBlur=o[2];c.textBaseline="middle";
+      c.textAlign="left";c.direction="ltr";c.font='700 128px "Zilla Slab", Georgia, serif';c.fillText("ALROOMY MEDICAL CENTRE",80,410,990);
+      c.direction="rtl";c.textAlign="right";c.font='170px Lalezar, sans-serif';c.fillText("مركز الرومي الطبي",1990,425,730);c.restore()});
+    seal(g,1150,410,66);h.globalAlpha=.55;seal(h,1150,410,66);h.globalAlpha=1;
+    signRow(g,h,2048,22,92,34);groundFloor(g,h,2048,10,202,40);
+    // side facade
+    var S=cv(1024,1024),sg=S.getContext("2d"),SE=cv(1024,1024),se=SE.getContext("2d");
+    se.fillStyle="#000";se.fillRect(0,0,1024,1024);
+    tiles(sg,1024,82,790);sg.fillStyle="rgba(30,20,60,.18)";sg.fillRect(0,0,1024,790);
+    sg.fillStyle="#1c3fb0";sg.fillRect(0,0,1024,82);sg.fillRect(470,82,84,708);
+    [[200,200],[760,200],[200,560],[760,560]].forEach(function(w,i){sg.fillStyle="#f5f5f5";sg.fillRect(w[0]-6,w[1]-6,82,102);sg.fillStyle="#283152";sg.fillRect(w[0],w[1],70,90);if(i===2){sg.fillStyle="#ffdca8";sg.fillRect(w[0],w[1],70,90);se.fillStyle="#ffcf8a";se.fillRect(w[0],w[1],70,90)}});
+    signRow(sg,se,1024,11,92,8);groundFloor(sg,se,1024,4,250,50);
+
+    var front=new THREE.MeshStandardMaterial({map:tex(F),emissiveMap:tex(E),emissive:0xffffff,emissiveIntensity:0,roughness:.85});
+    var side=new THREE.MeshStandardMaterial({map:tex(S),emissiveMap:tex(SE),emissive:0xffffff,emissiveIntensity:0,roughness:.9});
+    var roof=new THREE.MeshStandardMaterial({color:0x262b44,roughness:1});
+    var group=new THREE.Group();
+    var bodyM=new THREE.Mesh(new THREE.BoxGeometry(12,6,4),[side,side,roof,roof,front,side]);bodyM.position.y=3;group.add(bodyM);
+    var band=new THREE.Mesh(new THREE.BoxGeometry(12.36,.42,4.36),new THREE.MeshStandardMaterial({color:0x1c3fb0,roughness:.45,metalness:.25}));band.position.y=5.82;group.add(band);
+    var canopy=new THREE.Mesh(new THREE.BoxGeometry(12.2,.12,.9),new THREE.MeshStandardMaterial({color:0x1c3fb0,roughness:.5}));canopy.position.set(0,1.18,2.45);group.add(canopy);
+
+    // rooftop sign
+    var R=cv(1024,256),rc=R.getContext("2d");rc.font='190px Lalezar, sans-serif';rc.direction="rtl";rc.textAlign="center";rc.textBaseline="middle";
+    rc.shadowColor="#ffae00";rc.shadowBlur=34;rc.fillStyle="#ffd84a";rc.fillText("الرومي الطبي",512,140,940);
+    var signMat=new THREE.MeshBasicMaterial({map:tex(R),transparent:true,opacity:0,depthWrite:false});
+    var signM=new THREE.Mesh(new THREE.PlaneGeometry(4.4,1.1),signMat);signM.position.set(3.2,6.95,.6);group.add(signM);
+    var frameMat=new THREE.MeshStandardMaterial({color:0x2b2b3a,roughness:.8});
+    [[1.2,6.55],[5.2,6.55]].forEach(function(p){var m=new THREE.Mesh(new THREE.BoxGeometry(.07,1.1,.07),frameMat);m.position.set(p[0],p[1],.55);group.add(m)});
+    [6.42,7.5].forEach(function(y){var m=new THREE.Mesh(new THREE.BoxGeometry(4.3,.05,.05),frameMat);m.position.set(3.2,y,.55);group.add(m)});
+
+    // gold lamps along the roof band, with chasing glow
+    var lampPos=[],i;
+    for(i=0;i<30;i++)lampPos.push(-5.9+i*(11.8/29),5.82,2.2);
+    for(i=0;i<9;i++){var z=1.9-i*(3.8/8);lampPos.push(6.2,5.82,z);lampPos.push(-6.2,5.82,z)}
+    var lampN=lampPos.length/3,lampMat=new THREE.MeshBasicMaterial({color:0x554a2a}),lampGeo=new THREE.SphereGeometry(.07,10,8);
+    for(i=0;i<lampN;i++){var lm=new THREE.Mesh(lampGeo,lampMat);lm.position.set(lampPos[i*3],lampPos[i*3+1],lampPos[i*3+2]);group.add(lm)}
+    var G=cv(64,64),gc=G.getContext("2d"),rg=gc.createRadialGradient(32,32,0,32,32,32);rg.addColorStop(0,"rgba(255,255,255,1)");rg.addColorStop(.25,"rgba(255,255,255,.55)");rg.addColorStop(1,"rgba(255,255,255,0)");gc.fillStyle=rg;gc.fillRect(0,0,64,64);
+    var glowTex=new THREE.CanvasTexture(G);
+    var gGeo=new THREE.BufferGeometry(),gCol=new Float32Array(lampN*3);
+    gGeo.setAttribute("position",new THREE.Float32BufferAttribute(lampPos,3));gGeo.setAttribute("color",new THREE.BufferAttribute(gCol,3));
+    var gMat=new THREE.PointsMaterial({size:.9,map:glowTex,vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false});
+    group.add(new THREE.Points(gGeo,gMat));
+
+    // warm light spill on the ground
+    var W=cv(256,256),wc=W.getContext("2d"),wg=wc.createRadialGradient(128,128,0,128,128,128);wg.addColorStop(0,"rgba(255,170,90,.9)");wg.addColorStop(1,"rgba(255,170,90,0)");wc.fillStyle=wg;wc.fillRect(0,0,256,256);
+    var spill=new THREE.Mesh(new THREE.PlaneGeometry(20,9),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(W),transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false}));
+    spill.rotation.x=-Math.PI/2;spill.position.set(0,.02,4);group.add(spill);
+    scene.add(group);
+
+    var ground=new THREE.Mesh(new THREE.PlaneGeometry(300,300),new THREE.MeshStandardMaterial({color:0x060920,roughness:1}));ground.rotation.x=-Math.PI/2;scene.add(ground);
+    // haze that hides the far edge of the ground against the CSS sky
+    var Hz=cv(8,256),hc=Hz.getContext("2d"),hg=hc.createLinearGradient(0,0,0,256);hg.addColorStop(0,"rgba(48,30,98,0)");hg.addColorStop(.55,"rgba(48,30,98,.7)");hg.addColorStop(1,"rgba(48,30,98,1)");hc.fillStyle=hg;hc.fillRect(0,0,8,256);
+    var haze=new THREE.Mesh(new THREE.PlaneGeometry(700,110),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(Hz),transparent:true,depthWrite:false,fog:false}));
+    haze.position.set(0,30,-112);scene.add(haze);
+    scene.add(new THREE.HemisphereLight(0x8f9cff,0x100a26,.5));
+    var sun=new THREE.DirectionalLight(0xffb27a,.95);sun.position.set(-12,9,12);scene.add(sun);
+    var fill=new THREE.PointLight(0xffc36b,0,26);fill.position.set(0,3,7);group.add(fill);
+
+    // floating dust and far stars
+    function pts(n,f,size,color,op){var a=new Float32Array(n*3);for(var k=0;k<n;k++){var v=f();a[k*3]=v[0];a[k*3+1]=v[1];a[k*3+2]=v[2]}
+      var geo=new THREE.BufferGeometry();geo.setAttribute("position",new THREE.BufferAttribute(a,3));
+      return new THREE.Points(geo,new THREE.PointsMaterial({size:size,map:glowTex,color:color,transparent:true,opacity:op,blending:THREE.AdditiveBlending,depthWrite:false,fog:false}))}
+    var rnd=Math.random,dust=pts(380,function(){return[(rnd()-.5)*50,rnd()*14,(rnd()-.5)*26-2]},.12,0xffe2a0,.75);scene.add(dust);
+    var stars=pts(260,function(){return[(rnd()-.5)*220,18+rnd()*50,-90-rnd()*40]},.9,0xffffff,.8);scene.add(stars);
+
+    var L={},mx=0,my=0,tx=0,ty=0,start=null,raf=0,visible=true,going=false;
+    function layout(){
+      var w=hero.clientWidth,hh=hero.clientHeight;renderer.setSize(w,hh,false);cam.aspect=w/hh;cam.updateProjectionMatrix();
+      var sgn=root.lang==="ar"?-1:1;
+      if(cam.aspect<1)L={x:0,s:Math.min(.6,cam.aspect*1.02),rot:-.42,camY:4.4,lookY:-2.1,z:27};
+      else L={x:sgn*(cam.aspect>1.5?5.6:4.2),s:cam.aspect>1.5?.94:.8,rot:sgn*.38,camY:3.3,lookY:2.3,z:25};
+      if(!going)draw(performance.now());
+    }
+    function draw(now){
+      var t=now/1000,el=start===null?0:now-start,k=reduced?1:Math.min(1,el/1700),rise=1-Math.pow(1-k,3);
+      var on=reduced?1:Math.max(0,Math.min(1,(el-1300)/800));
+      var p=Math.min(1,window.scrollY/Math.max(1,hero.clientHeight));
+      tx+=(mx-tx)*.05;ty+=(my-ty)*.05;
+      group.position.x=L.x;group.scale.set(L.s,L.s*Math.max(.001,rise),L.s);
+      group.rotation.y=L.rot+tx*.2+p*.6*(L.x>0?-1:1);
+      cam.position.set(tx*1.4,L.camY-ty*.8+p*3,L.z-p*6);cam.lookAt(0,L.lookY,0);
+      front.emissiveIntensity=side.emissiveIntensity=.95*on;fill.intensity=1.3*on;spill.material.opacity=.85*on;signMat.opacity=on;
+      lampMat.color.setRGB(.33+.67*on,.29+.55*on,.16+.2*on);
+      for(var j=0;j<lampN;j++){var kk=(.3+.7*Math.pow(.5+.5*Math.sin(t*2.6-j*.5),6))*on;gCol[j*3]=kk;gCol[j*3+1]=.78*kk;gCol[j*3+2]=.3*kk}
+      gGeo.attributes.color.needsUpdate=true;gMat.size=.9*L.s;
+      dust.rotation.y=t*.012;dust.position.y=Math.sin(t*.3)*.4;
+      renderer.render(scene,cam);
+    }
+    function loop(now){raf=requestAnimationFrame(loop);draw(now)}
+    function play(){if(going||reduced||!visible||document.hidden)return;going=true;raf=requestAnimationFrame(loop)}
+    function pause(){going=false;cancelAnimationFrame(raf)}
+    window.addEventListener("resize",layout);
+    window.addEventListener("pointermove",function(e){mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2},{passive:true});
+    if("IntersectionObserver" in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;visible?play():pause()}).observe(hero);
+    document.addEventListener("visibilitychange",function(){document.hidden?pause():play()});
+    window.addEventListener("scroll",function(){if(reduced)draw(performance.now())},{passive:true});
+    layout();
+    return {layout:layout,go:function(){start=performance.now();if(reduced)draw(start);else play()}};
+  }
+
+  // fonts → scene → reveal
+  var t0=Date.now(),fontsReady=document.fonts&&document.fonts.load?Promise.race([
+    Promise.all([document.fonts.load('170px Lalezar'),document.fonts.load('700 128px "Zilla Slab"')]),
+    new Promise(function(r){setTimeout(r,2500)})]):Promise.resolve();
+  var revealed=false;
+  function reveal(){
+    if(revealed)return;revealed=true;
+    document.getElementById("loader").classList.add("done");body.classList.remove("locked");
+    setTimeout(function(){body.classList.add("ready");if(scene3d)scene3d.go()},350);
+  }
+  fontsReady.then(function(){
+    try{scene3d=buildScene()}catch(e){scene3d=null}
+    if(scene3d)document.getElementById("top").classList.add("has3d");
+    setTimeout(reveal,Math.max(0,(reduced?0:1500)-(Date.now()-t0)));
+  });
+  setTimeout(reveal,4000);
+})();
+</script>
+</body>
+</html>
